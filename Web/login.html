@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Clube dos Pets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos específicos para a caixa de login ficar centralizada e bonita */
+        .login-container {
+            max-width: 450px;
+            margin: 60px auto;
+            padding: 40px;
+            border: 1px solid var(--light-gray);
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            background: white;
+        }
+
+        .login-container h2 {
+            margin: 20px 0 10px;
+            font-size: 24px;
+        }
+
+        .login-container p {
+            color: var(--gray);
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .login-container input:focus {
+            border-color: var(--black);
+        }
+
+        .btn-login {
+            width: 100%;
+            background: var(--black);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .btn-login:hover {
+            opacity: 0.9;
+        }
+
+        .signup-link {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: var(--black);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-content">
+        <a href="index.html" style="text-decoration: none; color: inherit;"><h2>🐾 Clube dos Pets</h2></a>
+        <nav>
+            <a href="fornecedor.html" class="btn-link">Anunciar local</a>
+            <a href="login.html" class="btn">Entrar</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="categories">
+        <a href="index.html" class="cat-item" style="text-decoration: none;">🐾<br>Todos</a>
+        <a href="vet.html" class="cat-item" style="text-decoration: none;">🏥<br>Vet</a>
+        <a href="hoteis.html" class="cat-item" style="text-decoration: none;">🏨<br>Hotéis</a>
+        <a href="restaurantes.html" class="cat-item" style="text-decoration: none;">🍽️<br>Restaurantes</a>
+        <a href="shoppings.html" class="cat-item" style="text-decoration: none;">🛍️<br>Shoppings</a>
+        <a href="parques.html" class="cat-item" style="text-decoration: none;">🌳<br>Parques</a>
+    </section>
+
+    <div class="login-container">
+        <img src="logo.jpeg" alt="Logo Clube dos Pets" style="height: 80px; object-fit: contain;">
+        <h2>Bem-vindo de volta</h2>
+        <p>Acesse sua conta para gerenciar seus locais favoritos e reservas.</p>
+        
+        <form>
+            <input type="email" placeholder="Seu e-mail" required>
+            <input type="password" placeholder="Sua senha" required>
+            <button type="submit" class="btn-login">Entrar</button>
+        </form>
+
+        <div class="signup-link">
+            Não tem uma conta? <a href="#">Cadastre-se agora</a>
+        </div>
+    </div>
+</main>
+
+<footer style="padding: 40px 0; text-align: center; color: var(--gray); font-size: 13px; border-top: 1px solid var(--light-gray); margin-top: 50px;">
+    <p>© 2026 Clube dos Pets - Encontre o melhor para o seu amigo.</p>
+</footer>
+
+</body>
+</html>

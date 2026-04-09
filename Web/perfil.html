@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta - Clube dos Pets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .user-section { padding: 40px 0; }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Card de Reserva Específico */
+        .reserva-confirmada {
+            background: #fff;
+            border: 1px solid var(--light-gray);
+            border-radius: 15px;
+            display: flex;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .reserva-img { width: 250px; height: 180px; object-fit: cover; }
+        
+        .reserva-detalhes { padding: 20px; flex: 1; position: relative; }
+        
+        .status-badge {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .reserva-detalhes h3 { font-size: 18px; margin-bottom: 5px; }
+        .reserva-detalhes p { color: var(--gray); font-size: 14px; margin-bottom: 10px; }
+        
+        .reserva-info-grid { display: flex; gap: 30px; margin-top: 15px; }
+        .info-item b { display: block; font-size: 12px; color: var(--black); text-transform: uppercase; }
+
+        /* Ajuste para mobile */
+        @media (max-width: 600px) {
+            .reserva-confirmada { flex-direction: column; }
+            .reserva-img { width: 100%; height: 150px; }
+            .reserva-info-grid { flex-wrap: wrap; gap: 15px; }
+            .status-badge { position: static; display: inline-block; margin-bottom: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-content">
+        <a href="index.html" style="text-decoration: none; color: inherit;"><h2>🐾 Clube dos Pets</h2></a>
+        <nav>
+            <span style="font-size: 14px; font-weight: 600; margin-right: 15px;">Olá, Maria Gabriela!</span>
+            <a href="index.html" class="btn">Sair</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="categories">
+        <a href="index.html" class="cat-item">🐾<br>Todos</a>
+        <a href="vet.html" class="cat-item">🏥<br>Vet</a>
+        <a href="hoteis.html" class="cat-item">🏨<br>Hotéis</a>
+        <a href="restaurantes.html" class="cat-item">🍽️<br>Restaurantes</a>
+        <a href="shoppings.html" class="cat-item">🛍️<br>Shoppings</a>
+        <a href="parques.html" class="cat-item">🌳<br>Parques</a>
+    </section>
+
+    <section class="user-section">
+        
+        <h2 class="section-title">📅 Minhas Reservas</h2>
+        
+        <div class="reserva-confirmada">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=500" class="reserva-img" alt="Hotel">
+            <div class="reserva-detalhes">
+                <span class="status-badge">Confirmada</span>
+                <h3>Resort Quinta das Patas</h3>
+                <p>Araras, São Paulo</p>
+                
+                <div class="reserva-info-grid">
+                    <div class="info-item">
+                        <b>Check-in</b>
+                        15 de Junho
+                    </div>
+                    <div class="info-item">
+                        <b>Check-out</b>
+                        20 de Junho
+                    </div>
+                    <div class="info-item">
+                        <b>Código</b>
+                        #PET-99283
+                    </div>
+                </div>
+                <button class="btn" style="margin-top: 20px; background: white; color: black; border: 1px solid black; padding: 8px 15px;">Gerenciar Reserva</button>
+            </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid var(--light-gray); margin-bottom: 40px;">
+
+        <h2 class="section-title">❤️ Meus Favoritos</h2>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=500" alt="Hospital">
+                    <span class="fav" style="color: #ff385c;">❤️</span>
+                </div>
+                <div class="card-info">
+                    <div class="card-header">
+                        <h3>Hospital Pet 24h</h3>
+                        <span class="rating">⭐ 5.0</span>
+                    </div>
+                    <p>Emergência Veterinária</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500" alt="Restaurante">
+                    <span class="fav" style="color: #ff385c;">❤️</span>
+                </div>
+                <div class="card-info">
+                    <div class="card-header">
+                        <h3>Bistrô do Totó</h3>
+                        <span class="rating">⭐ 4.8</span>
+                    </div>
+                    <p>Restaurante Pet Friendly</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=500" alt="Parque">
+                    <span class="fav" style="color: #ff385c;">❤️</span>
+                </div>
+                <div class="card-info">
+                    <div class="card-header">
+                        <h3>Parque Ecológico</h3>
+                        <span class="rating">⭐ 4.9</span>
+                    </div>
+                    <p>Lazer ao ar livre</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</main>
+
+<footer style="padding: 40px 0; text-align: center; color: var(--gray); font-size: 13px; border-top: 1px solid var(--light-gray);">
+    <p>© 2026 Clube dos Pets - Fatec Araras</p>
+</footer>
+
+</body>
+</html>

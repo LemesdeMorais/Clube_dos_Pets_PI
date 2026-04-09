@@ -1,0 +1,61 @@
+:root {
+    --black: #1a1a1a;
+    --white: #ffffff;
+    --gray: #717171;
+    --light-gray: #ebebeb;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { font-family: 'Inter', sans-serif; color: var(--black); background: var(--white); }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* HEADER */
+header { padding: 15px 0; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; background: white; z-index: 100; }
+.header-content { display: flex; justify-content: space-between; align-items: center; }
+.btn { background: var(--black); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; }
+.btn-link { text-decoration: none; color: var(--black); font-size: 14px; font-weight: 600; margin-right: 20px; }
+
+/* BUSCA */
+.search-section { padding: 30px 0; }
+.search-bar { 
+    display: flex; 
+    border: 1px solid var(--light-gray); 
+    border-radius: 40px; 
+    padding: 8px 15px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+    align-items: center;
+}
+.search-item { flex: 1; padding: 0 20px; border-right: 1px solid var(--light-gray); }
+.search-item:last-of-type { border-right: none; }
+.search-item label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+.search-item input, .search-item select { border: none; outline: none; width: 100%; font-size: 14px; color: var(--gray); background: transparent; }
+.search-btn { background: var(--black); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; }
+
+/* CATEGORIAS */
+.categories { display: flex; gap: 30px; padding: 10px 0 25px; overflow-x: auto; border-bottom: 1px solid var(--light-gray); }
+.categories::-webkit-scrollbar { display: none; }
+.cat-item { text-align: center; font-size: 12px; color: var(--gray); cursor: pointer; min-width: 60px; transition: 0.3s; opacity: 0.6; }
+.cat-item:hover, .cat-item.active { opacity: 1; color: black; font-weight: 600; border-bottom: 2px solid black; }
+
+/* GRID E CARDS */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; padding: 30px 0; }
+.card { cursor: pointer; }
+.img-box { position: relative; width: 100%; aspect-ratio: 1/1; }
+.img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 15px; }
+.fav { position: absolute; top: 12px; right: 12px; color: white; font-size: 24px; text-shadow: 0 0 4px rgba(0,0,0,0.5); }
+.card-info { margin-top: 12px; }
+.card-header { display: flex; justify-content: space-between; align-items: center; }
+.card-header h3 { font-size: 15px; font-weight: 600; }
+.rating { font-size: 14px; }
+.card-info p { color: var(--gray); font-size: 14px; margin-top: 2px; }
+.price { margin-top: 6px; font-size: 14px; }
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .search-bar { flex-direction: column; border-radius: 20px; padding: 15px; }
+    .search-item { border-right: none; border-bottom: 1px solid var(--light-gray); width: 100%; padding: 10px 0; }
+    .search-btn { width: 100%; border-radius: 10px; margin-top: 10px; }
+    .header-content h2 { font-size: 18px; }
+}

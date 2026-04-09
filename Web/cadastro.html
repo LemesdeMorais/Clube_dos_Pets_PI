@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Cadastro de Fornecedor - Clube dos Pets</title>
+</head>
+<body>
+    <div class="container" style="padding: 50px 0;">
+        <h2>Cadastre seu Estabelecimento Pet Friendly</h2>
+        <p>Ajude tutores a encontrarem seu local com praticidade.</p>
+        
+        <form style="max-width: 600px;">
+            <label>Nome do Local:</label>
+            <input type="text" placeholder="Ex: Hotel Pet Relax">
+            
+            <label>Categoria:</label>
+            <select>
+                <option>Restaurante/Bar</option>
+                <option>Hotel/Hospedagem</option>
+                <option>Veterinário</option>
+                <option>Shopping</option>
+                <option>Outros</option>
+            </select>
+            
+            <label>Endereço Completo:</label>
+            <input type="text" placeholder="Rua, Número, Cidade/Estado e CEP">
+            
+            <label>Fotos do Local:</label>
+            <input type="file" multiple>
+            
+            <label>Descrição dos diferenciais:</label>
+            <textarea style="width: 100%; height: 100px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+            
+            <button type="submit" class="btn-main" style="margin-top: 20px;">Finalizar Cadastro</button>
+        </form>
+    </div>
+</body>
+</html>
