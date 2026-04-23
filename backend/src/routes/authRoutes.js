@@ -1,0 +1,12 @@
+const express = require('express');
+const router = express.Router();
+const verificarToken = require('../middlewares/authMiddleware');
+
+router.get('/perfil', verificarToken, (req, res) => {
+  res.status(200).json({
+    mensagem: 'Acesso autorizado.',
+    usuario: req.usuario
+  });
+});
+
+module.exports = router;

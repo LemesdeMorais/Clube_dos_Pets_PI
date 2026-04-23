@@ -3,11 +3,13 @@ const router = express.Router();
 const {
   listarUsuarios,
   buscarUsuarioPorId,
-  cadastrarUsuario
+  cadastrarUsuario,
+  loginUsuario
 } = require('../controllers/usuarioController');
 
 router.get('/', listarUsuarios);
-router.get('/:id', buscarUsuarioPorId);
 router.post('/', cadastrarUsuario);
+router.post('/login', loginUsuario);
+router.get('/:id', buscarUsuarioPorId);
 
 module.exports = router;
