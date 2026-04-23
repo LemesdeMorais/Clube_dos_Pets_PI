@@ -8,6 +8,8 @@ const categoriaRoutes = require('./routes/categoriaRoutes');
 const estabelecimentoRoutes = require('./routes/estabelecimentoRoutes');
 const usuarioRoutes = require('./routes/usuarioRoutes');
 const avaliacaoRoutes = require('./routes/avaliacaoRoutes');
+const favoritoRoutes = require('./routes/favoritoRoutes');
+const enderecoRoutes = require('./routes/enderecoRoutes');
 
 app.use(cors());
 app.use(express.json());
@@ -20,6 +22,8 @@ app.use('/categorias', categoriaRoutes);
 app.use('/estabelecimentos', estabelecimentoRoutes);
 app.use('/usuarios', usuarioRoutes);
 app.use('/avaliacoes', avaliacaoRoutes);
+app.use('/favoritos', favoritoRoutes);
+app.use('/enderecos', enderecoRoutes);
 
 const PORT = process.env.PORT || 3000;
 
