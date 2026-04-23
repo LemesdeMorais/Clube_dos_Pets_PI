@@ -314,6 +314,11 @@ header { padding: 15px 0; border-bottom: 1px solid var(--light-gray); position: 
     color: var(--white);
 }
 
+/* Classe utilitária para esconder elementos via JS */
+.hidden {
+    display: none !important;
+}
+
 /* Botão de Mapa Flutuante na Home */
 .floating-map-btn {
     position: fixed;

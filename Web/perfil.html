@@ -18,6 +18,21 @@
             gap: 10px;
         }
 
+        /* Estilo do botão Sair padronizado */
+        .btn-sair {
+            background: #ff385c; /* Cor de destaque para sair */
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .btn-sair:hover { opacity: 0.8; }
+
         /* Card de Reserva Específico */
         .reserva-confirmada {
             background: #fff;
@@ -66,8 +81,8 @@
     <div class="container header-content">
         <a href="index.html" style="text-decoration: none; color: inherit;"><h2>🐾 Clube dos Pets</h2></a>
         <nav>
-            <span style="font-size: 14px; font-weight: 600; margin-right: 15px;">Olá, Maria Gabriela!</span>
-            <a href="index.html" class="btn">Sair</a>
+            <span id="boas-vindas" style="font-size: 14px; font-weight: 600; margin-right: 15px;">Olá, Maria Gabriela!</span>
+            <button onclick="logout()" class="btn-sair">Sair</button>
         </nav>
     </div>
 </header>
@@ -107,7 +122,7 @@
                         #PET-99283
                     </div>
                 </div>
-                <button class="btn" style="margin-top: 20px; background: white; color: black; border: 1px solid black; padding: 8px 15px;">Gerenciar Reserva</button>
+                <button class="btn" style="margin-top: 20px; background: white; color: black; border: 1px solid black; padding: 8px 15px; cursor: pointer;">Gerenciar Reserva</button>
             </div>
         </div>
 
@@ -165,6 +180,29 @@
 <footer style="padding: 40px 0; text-align: center; color: var(--gray); font-size: 13px; border-top: 1px solid var(--light-gray);">
     <p>© 2026 Clube dos Pets - Fatec Araras</p>
 </footer>
+
+<script>
+    // Verifica se o usuário tem permissão para estar nesta página
+    function verificarSessao() {
+        const logado = localStorage.getItem('usuarioLogado') === 'true';
+        
+        if (!logado) {
+            // Se tentar acessar o perfil sem estar logado, volta para o login
+            alert("Acesso restrito. Por favor, faça login.");
+            window.location.href = "login.html";
+        }
+    }
+
+    function logout() {
+        // Limpa o estado de login
+        localStorage.removeItem('usuarioLogado');
+        alert("Saindo da conta...");
+        window.location.href = "index.html"; // Redireciona para o início
+    }
+
+    // Executa a verificação assim que a página carrega
+    window.onload = verificarSessao;
+</script>
 
 </body>
 </html>

@@ -6,16 +6,38 @@
     <title>Clube dos Pets | Veterinários e Saúde</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Padronização do Botão Sair e Nav */
+        .btn-sair {
+            background: #717171;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            display: inline-block;
+        }
+        .btn-sair:hover { opacity: 0.8; }
+        
+        .hidden { display: none !important; }
+
+        nav { display: flex; align-items: center; gap: 15px; }
+    </style>
 </head>
 <body>
 
 <header>
     <div class="container header-content">
         <a href="index.html" style="text-decoration: none; color: inherit;"><h2>🐾 Clube dos Pets</h2></a>
-        <nav>
+        <nav id="nav-menu">
             <a href="index.html" class="btn-link">Início</a>
             <a href="fornecedor.html" class="btn-link">Anunciar local</a>
-            <a href="login.html" class="btn">Entrar</a>
+            <a href="login.html" id="btn-entrar" class="btn">Entrar</a>
+            <button onclick="logout()" id="btn-sair" class="btn-sair hidden">Sair</button>
         </nav>
     </div>
 </header>
@@ -41,9 +63,9 @@
         </div>
     </section>
 
-        <section class="categories">
-      <a href="index.html" class="cat-item active" style="text-decoration: none;">🐾<br>Todos</a>
-        <a href="vet.html" class="cat-item" style="text-decoration: none;">🏥<br>Vet</a>
+    <section class="categories">
+        <a href="index.html" class="cat-item" style="text-decoration: none;">🐾<br>Todos</a>
+        <a href="vet.html" class="cat-item active" style="text-decoration: none;">🏥<br>Vet</a>
         <a href="hoteis.html" class="cat-item" style="text-decoration: none;">🏨<br>Hotéis</a>
         <a href="restaurantes.html" class="cat-item" style="text-decoration: none;">🍽️<br>Restaurantes</a>
         <a href="shoppings.html" class="cat-item" style="text-decoration: none;">🛍️<br>Shoppings</a>
@@ -122,12 +144,36 @@
 </main>
 
 <a href="mapa.html" class="floating-map-btn">
-        Mostrar mapa 🗺️
-    </a>
+    Mostrar mapa 🗺️
+</a>
 
 <footer style="padding: 40px 0; text-align: center; color: var(--gray); font-size: 13px; border-top: 1px solid var(--light-gray);">
     <p>© 2026 Clube dos Pets - Saúde e Bem-estar Animal</p>
 </footer>
+
+<script>
+    function gerenciarNav() {
+        const btnEntrar = document.getElementById('btn-entrar');
+        const btnSair = document.getElementById('btn-sair');
+        const logado = localStorage.getItem('usuarioLogado') === 'true';
+
+        if (logado) {
+            btnEntrar.classList.add('hidden');
+            btnSair.classList.remove('hidden');
+        } else {
+            btnEntrar.classList.remove('hidden');
+            btnSair.classList.add('hidden');
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem('usuarioLogado');
+        alert("Você saiu da sua conta.");
+        window.location.reload();
+    }
+
+    window.onload = gerenciarNav;
+</script>
 
 </body>
 </html>

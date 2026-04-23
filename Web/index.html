@@ -3,19 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clube dos Pets</title>
+    <title>Clube dos Pets - Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilização do Botão Sair */
+        .btn-sair {
+            background: #717171;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            display: inline-block;
+        }
+        .btn-sair:hover { opacity: 0.8; }
+        
+        .hidden { display: none !important; }
+
+        nav { display: flex; align-items: center; gap: 15px; }
+    </style>
 </head>
 <body>
 
 <header>
     <div class="container header-content">
-        <h2>🐾 Clube dos Pets</h2>
-        <nav>
+        <a href="index.html" style="text-decoration: none; color: inherit;"><h2>🐾 Clube dos Pets</h2></a>
+        <nav id="nav-menu">
             <a href="index.html" class="btn-link">Início</a>
             <a href="fornecedor.html" class="btn-link">Anunciar local</a>
-            <a href="login.html" class="btn">Entrar</a>
+            <a href="login.html" id="btn-entrar" class="btn">Entrar</a>
+            <button onclick="logout()" id="btn-sair" class="btn-sair hidden">Sair</button>
         </nav>
     </div>
 </header>
@@ -56,19 +78,19 @@
     <section class="grid">
 
         <a href="pagina-hotel.html" style="text-decoration: none; color: inherit;" class="card">
-    <div class="img-box">
-        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=500" alt="Hotel Pet Feliz">
-        <span class="fav">♡</span>
-    </div>
-    <div class="card-info">
-        <div class="card-header">
-            <h3>Hotel Pet Feliz</h3>
-            <span class="rating">⭐ 4.8</span>
-        </div>
-        <p>Hospedagem pet • Araras, SP</p>
-        <p class="price"><b>R$ 85</b> noite</p>
-    </div>
-</a>
+            <div class="img-box">
+                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=500" alt="Hotel Pet Feliz">
+                <span class="fav">♡</span>
+            </div>
+            <div class="card-info">
+                <div class="card-header">
+                    <h3>Hotel Pet Feliz</h3>
+                    <span class="rating">⭐ 4.8</span>
+                </div>
+                <p>Hospedagem pet • Araras, SP</p>
+                <p class="price"><b>R$ 85</b> noite</p>
+            </div>
+        </a>
 
         <div class="card">
             <div class="img-box">
@@ -99,9 +121,10 @@
                 <p class="price"><b>Inclusivo</b> para todos os portes</p>
             </div>
         </div>
-<div class="card">
+
+        <div class="card">
             <div class="img-box">
-                <img src="img/shopping.jpg" alt="Shopping Pet Friendly">
+                <img src="img/shopping.jpg" alt="Shopping">
                 <span class="fav">♡</span>
             </div>
             <div class="card-info">
@@ -110,18 +133,18 @@
                     <span class="rating">⭐ 4.7</span>
                 </div>
                 <p>Centro Comercial • Pet Friendly</p>
-                <p class="price">Permitido em todas as áreas comuns</p>
+                <p class="price">Permitido em áreas comuns</p>
             </div>
         </div>
 
         <div class="card">
             <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=500" alt="Parque para Cães">
+                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=500" alt="Parque">
                 <span class="fav">♡</span>
             </div>
             <div class="card-info">
                 <div class="card-header">
-                    <h3>Parque Ecológico Gilberto Rüegger</h3>
+                    <h3>Parque Ecológico</h3>
                     <span class="rating">⭐ 4.9</span>
                 </div>
                 <p>Lazer ao ar livre • Araras, SP</p>
@@ -143,13 +166,35 @@
                 <p class="price"><b>R$ 80</b> (Porte pequeno)</p>
             </div>
         </div>
-    </section>
 
+    </section>
 </main>
 
-<a href="mapa.html" class="floating-map-btn">
-        Mostrar mapa 🗺️
-    </a>
+<a href="mapa.html" class="floating-map-btn">Mostrar mapa 🗺️</a>
+
+<script>
+    function gerenciarNav() {
+        const btnEntrar = document.getElementById('btn-entrar');
+        const btnSair = document.getElementById('btn-sair');
+        const logado = localStorage.getItem('usuarioLogado') === 'true';
+
+        if (logado) {
+            btnEntrar.classList.add('hidden');
+            btnSair.classList.remove('hidden');
+        } else {
+            btnEntrar.classList.remove('hidden');
+            btnSair.classList.add('hidden');
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem('usuarioLogado');
+        alert("Você saiu da sua conta.");
+        window.location.reload();
+    }
+
+    window.onload = gerenciarNav;
+</script>
 
 </body>
 </html>

@@ -7,11 +7,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        /* Estilização do Botão Sair */
+        .btn-sair {
+            background: #717171;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            display: inline-block;
+        }
+        .btn-sair:hover { opacity: 0.8; }
+        
+        .hidden { display: none !important; }
+
+        nav { display: flex; align-items: center; gap: 15px; }
+
+        /* Estilos originais da página */
         .hotel-header { padding: 25px 0 15px; }
         .hotel-header h1 { font-size: 26px; margin-bottom: 8px; }
         .hotel-meta { display: flex; gap: 15px; font-size: 14px; font-weight: 600; text-decoration: underline; }
 
-        /* Galeria Estilo Airbnb */
         .photo-gallery {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
@@ -25,13 +45,11 @@
         .photo-gallery img:hover { filter: brightness(0.8); }
         .photo-main { grid-row: span 2; }
 
-        /* Layout de Conteúdo e Reserva */
         .details-layout { display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 80px; margin-bottom: 60px; }
 
         .description h2 { font-size: 22px; margin-bottom: 15px; border-top: 1px solid var(--light-gray); padding-top: 30px; }
         .description p { color: var(--gray); line-height: 1.6; margin-bottom: 20px; }
 
-        /* Card de Reserva Fixo */
         .booking-card {
             border: 1px solid var(--light-gray);
             border-radius: 15px;
@@ -58,14 +76,12 @@
         .date-input input { border: none; outline: none; width: 100%; font-size: 14px; background: transparent; }
         .pet-select { grid-column: span 2; padding: 10px; }
 
-        /* Comentários */
         .reviews-section { border-top: 1px solid var(--light-gray); padding: 40px 0; }
         .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 25px; }
         .review-item { margin-bottom: 20px; }
         .review-user { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
         .review-user b { font-size: 16px; }
 
-        /* Responsividade */
         @media (max-width: 992px) {
             .details-layout { grid-template-columns: 1fr; gap: 40px; }
             .booking-card { position: static; }
@@ -78,10 +94,11 @@
 <header>
     <div class="container header-content">
         <a href="index.html" style="text-decoration: none; color: inherit;"><h2>🐾 Clube dos Pets</h2></a>
-        <nav>
+        <nav id="nav-menu">
             <a href="index.html" class="btn-link">Início</a>
             <a href="fornecedor.html" class="btn-link">Anunciar local</a>
-            <a href="login.html" class="btn">Entrar</a>
+            <a href="login.html" id="btn-entrar" class="btn">Entrar</a>
+            <button onclick="logout()" id="btn-sair" class="btn-sair hidden">Sair</button>
         </nav>
     </div>
 </header>
@@ -182,19 +199,43 @@
 </footer>
 
 <script>
-    function tentarReservar() {
-        // Simulação de estado de login (false = deslogado)
-        const estaLogado = false; 
+    // Lógica da Barra de Navegação
+    function gerenciarNav() {
+        const btnEntrar = document.getElementById('btn-entrar');
+        const btnSair = document.getElementById('btn-sair');
+        const logado = localStorage.getItem('usuarioLogado') === 'true';
 
-        if (estaLogado) {
-            // Se logado, vai para a página de pagamento
-            window.location.href = "reserva.html";
+        if (logado) {
+            btnEntrar.classList.add('hidden');
+            btnSair.classList.remove('hidden');
+        } else {
+            btnEntrar.classList.remove('hidden');
+            btnSair.classList.add('hidden');
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem('usuarioLogado');
+        alert("Você saiu da sua conta.");
+        window.location.reload();
+    }
+
+    // Lógica do botão Reservar
+    function tentarReservar() {
+        // Verifica o estado real no localStorage
+        const logado = localStorage.getItem('usuarioLogado') === 'true';
+
+        if (logado) {
+            // Se estiver logado, prossegue com a reserva (pode ser um alert de sucesso ou redirecionar)
+            alert("✅ Reserva solicitada com sucesso! Verifique seu e-mail.");
         } else {
             // Se deslogado, avisa e pede login
             alert("🔒 Para sua segurança e do seu pet, é necessário fazer login para concluir uma reserva.");
             window.location.href = "login.html";
         }
     }
+
+    window.onload = gerenciarNav;
 </script>
 
 </body>
