@@ -294,3 +294,45 @@ header { padding: 15px 0; border-bottom: 1px solid var(--light-gray); position: 
         width: 100%;
     }
 }
+
+/* Botão Sair - Ajustado para ser igual ao de Entrar, mas em Cinza */
+.btn-sair {
+    background: var(--gray); /* Usa a variável cinza que você já tem */
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    border: none; /* Remove bordas para ficar sólido como o .btn */
+    transition: opacity 0.3s ease;
+    display: inline-block;
+}
+
+.btn-sair:hover {
+    opacity: 0.8; /* Efeito de hover suave para botões coloridos */
+    color: var(--white);
+}
+
+/* Botão de Mapa Flutuante na Home */
+.floating-map-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--black);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.floating-map-btn:hover {
+    transform: translateX(-50%) scale(1.05);
+}
