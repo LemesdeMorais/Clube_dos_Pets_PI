@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Feliz - Hospedagem de Luxo | Clube dos Pets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hotel-header { padding: 25px 0 15px; }
+        .hotel-header h1 { font-size: 26px; margin-bottom: 8px; }
+        .hotel-meta { display: flex; gap: 15px; font-size: 14px; font-weight: 600; text-decoration: underline; }
+
+        /* Galeria Estilo Airbnb */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 200px 200px;
+            gap: 10px;
+            margin: 20px 0 40px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .photo-gallery img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; cursor: pointer; }
+        .photo-gallery img:hover { filter: brightness(0.8); }
+        .photo-main { grid-row: span 2; }
+
+        /* Layout de Conteúdo e Reserva */
+        .details-layout { display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 80px; margin-bottom: 60px; }
+
+        .description h2 { font-size: 22px; margin-bottom: 15px; border-top: 1px solid var(--light-gray); padding-top: 30px; }
+        .description p { color: var(--gray); line-height: 1.6; margin-bottom: 20px; }
+
+        /* Card de Reserva Fixo */
+        .booking-card {
+            border: 1px solid var(--light-gray);
+            border-radius: 15px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+        .booking-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .booking-header .price { font-size: 22px; font-weight: 700; }
+        
+        .booking-dates {
+            border: 1px solid #717171;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 15px;
+        }
+        .date-input { padding: 10px; border-bottom: 1px solid #717171; }
+        .date-input:first-child { border-right: 1px solid #717171; }
+        .date-input label { display: block; font-size: 10px; font-weight: 800; text-transform: uppercase; }
+        .date-input input { border: none; outline: none; width: 100%; font-size: 14px; }
+        .pet-select { grid-column: span 2; padding: 10px; }
+
+        /* Comentários */
+        .reviews-section { border-top: 1px solid var(--light-gray); padding: 40px 0; }
+        .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 25px; }
+        .review-item { margin-bottom: 20px; }
+        .review-user { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+        .review-user b { font-size: 16px; }
+        .review-user span { color: var(--gray); font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-content">
+        <a href="index.html" style="text-decoration: none; color: inherit;"><h2>🐾 Clube dos Pets</h2></a>
+        <nav>
+            <a href="index.html" class="btn-link">Início</a>
+            <a href="fornecedor.html" class="btn-link">Anunciar local</a>
+            <a href="login.html" class="btn">Entrar</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <div class="hotel-header">
+        <h1>Pet Feliz - Hospedagem e SPA Canino</h1>
+        <div class="hotel-meta">
+            <span>⭐ 4.9 (128 comentários)</span>
+            <span>Araras, São Paulo</span>
+        </div>
+    </div>
+
+    <section class="photo-gallery">
+        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800" class="photo-main" alt="Área externa">
+        <img src="https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&fit=crop&w=500" alt="Quarto pet">
+        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=500" alt="Banho">
+        <img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?auto=format&fit=crop&w=500" alt="Brincadeira">
+        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=500" alt="Pet Feliz">
+    </section>
+
+    <div class="details-layout">
+        <section class="description">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px;">
+                <div>
+                    <h2 style="border:none; padding:0; margin:0;">Espaço gerido por Ana Silva</h2>
+                    <p>8 hóspedes pet · 4 quartos · Câmeras 24h</p>
+                </div>
+            </div>
+
+            <h2>O que este lugar oferece</h2>
+            <p>O Pet Feliz é um hotel conceito em Araras, focado em oferecer liberdade e segurança. Contamos com monitoramento em tempo real que você pode acessar pelo telemóvel, área de recreação gramada e dormitórios climatizados.</p>
+            <ul style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; color: var(--gray);">
+                <li>✅ Quintal amplo</li>
+                <li>✅ Ar condicionado</li>
+                <li>✅ Veterinário de plantão</li>
+                <li>✅ Relatórios diários com fotos</li>
+            </ul>
+        </section>
+
+        <aside class="booking-card">
+            <div class="booking-header">
+                <span class="price">R$ 85 <span>/ noite</span></span>
+                <span>⭐ 4.9</span>
+            </div>
+
+            <div class="booking-dates">
+                <div class="date-input">
+                    <label>Check-in</label>
+                    <input type="date" value="2026-05-10">
+                </div>
+                <div class="date-input">
+                    <label>Check-out</label>
+                    <input type="date" value="2026-05-15">
+                </div>
+                <div class="pet-select">
+                    <label style="display: block; font-size: 10px; font-weight: 800; text-transform: uppercase;">Porte do Pet</label>
+                    <select style="width: 100%; border: none; outline: none; font-size: 14px;">
+                        <option>Pequeno (até 10kg)</option>
+                        <option>Médio (até 20kg)</option>
+                        <option>Grande (acima de 20kg)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn" style="width: 100%; padding: 15px; margin-bottom: 15px;">Reservar</button>
+            <p style="text-align: center; font-size: 14px; color: var(--gray);">Você não será cobrado agora</p>
+        </aside>
+    </div>
+
+    <section class="reviews-section">
+        <h2>⭐ 4.9 · 128 comentários</h2>
+        <div class="reviews-grid">
+            <div class="review-item">
+                <div class="review-user">
+                    <b>Fernanda Oliveira</b>
+                    <span>Maio de 2026</span>
+                </div>
+                <p>O Bob adorou a estadia! Recebi fotos dele brincando o dia todo. A equipe é muito carinhosa e o ambiente é extremamente limpo.</p>
+            </div>
+            <div class="review-item">
+                <div class="review-user">
+                    <b>Ricardo Santos</b>
+                    <span>Abril de 2026</span>
+                </div>
+                <p>Melhor hotel pet de Araras. Deixei o meu Golden por uma semana e fiquei muito tranquilo com as câmeras 24h.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer style="padding: 40px 0; text-align: center; color: var(--gray); font-size: 13px; border-top: 1px solid var(--light-gray);">
+    <p>© 2026 Clube dos Pets - Hospedagem com Amor</p>
+</footer>
+
+</body>
+</html>
