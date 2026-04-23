@@ -40,6 +40,7 @@
             position: sticky;
             top: 100px;
             height: fit-content;
+            background: white;
         }
         .booking-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .booking-header .price { font-size: 22px; font-weight: 700; }
@@ -54,7 +55,7 @@
         .date-input { padding: 10px; border-bottom: 1px solid #717171; }
         .date-input:first-child { border-right: 1px solid #717171; }
         .date-input label { display: block; font-size: 10px; font-weight: 800; text-transform: uppercase; }
-        .date-input input { border: none; outline: none; width: 100%; font-size: 14px; }
+        .date-input input { border: none; outline: none; width: 100%; font-size: 14px; background: transparent; }
         .pet-select { grid-column: span 2; padding: 10px; }
 
         /* Comentários */
@@ -64,6 +65,11 @@
         .review-user { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
         .review-user b { font-size: 16px; }
         .review-user span { color: var(--gray); font-size: 14px; }
+
+        @media (max-width: 992px) {
+            .details-layout { grid-template-columns: 1fr; gap: 40px; }
+            .booking-card { position: static; }
+        }
     </style>
 </head>
 <body>
@@ -132,7 +138,7 @@
                 </div>
                 <div class="pet-select">
                     <label style="display: block; font-size: 10px; font-weight: 800; text-transform: uppercase;">Porte do Pet</label>
-                    <select style="width: 100%; border: none; outline: none; font-size: 14px;">
+                    <select style="width: 100%; border: none; outline: none; font-size: 14px; background: transparent;">
                         <option>Pequeno (até 10kg)</option>
                         <option>Médio (até 20kg)</option>
                         <option>Grande (acima de 20kg)</option>
@@ -140,7 +146,9 @@
                 </div>
             </div>
 
-            <button class="btn" style="width: 100%; padding: 15px; margin-bottom: 15px;">Reservar</button>
+            <button onclick="verificarAcessoReserva()" class="btn" style="width: 100%; padding: 15px; margin-bottom: 15px; border: none; cursor: pointer;">
+                Reservar
+            </button>
             <p style="text-align: center; font-size: 14px; color: var(--gray);">Você não será cobrado agora</p>
         </aside>
     </div>
@@ -169,6 +177,22 @@
 <footer style="padding: 40px 0; text-align: center; color: var(--gray); font-size: 13px; border-top: 1px solid var(--light-gray);">
     <p>© 2026 Clube dos Pets - Hospedagem com Amor</p>
 </footer>
+
+<script>
+    function verificarAcessoReserva() {
+        // Simulação: Altere para 'true' para testar o comportamento de usuário logado
+        const usuarioEstaLogado = false; 
+
+        if (usuarioEstaLogado) {
+            // Se estiver logado, vai direto para o pagamento
+            window.location.href = "pagamento.html";
+        } else {
+            // Se não estiver logado, avisa o usuário e manda para o login
+            alert("🔒 Para sua segurança, faça login para continuar com a reserva.");
+            window.location.href = "login.html";
+        }
+    }
+</script>
 
 </body>
 </html>
