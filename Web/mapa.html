@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clube dos Pets | Mapa Pet Friendly</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Leaflet -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+</head>
+<body>
+
+<header>
+    <div class="container header-content">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+            <h2>🐾 Clube dos Pets</h2>
+        </a>
+        <nav>
+            <a href="fornecedor.html" class="btn-link">Anunciar local</a>
+            <a href="login.html" class="btn">Entrar</a>
+            <button id="logoutBtn" class="btn-link">Sair</button>
+        </nav>
+    </div>
+</header>
+
+<span id="usuarioLogado"></span>
+
+<main class="container">
+
+    <section class="search-section">
+        <div class="search-bar mapa-search-bar">
+            <div class="search-item">
+                <label>Onde</label>
+                <input type="text" id="enderecoBusca" placeholder="Digite um endereço ou use sua localização">
+            </div>
+
+            <div class="search-item">
+                <label>Categoria</label>
+                <select id="categoria">
+                    <option value="">Todos os serviços</option>
+                    <option value="1">Veterinário</option>
+                    <option value="2">Hotéis para Pets</option>
+                    <option value="3">Restaurantes</option>
+                    <option value="4">Shoppings</option>
+                    <option value="5">Parques</option>
+                    <option value="6">Casas de Ração</option>
+                    <option value="7">Bares</option>
+                </select>
+            </div>
+
+            <div class="search-item">
+                <label>Distância</label>
+                <select id="distancia">
+                    <option value="3">Até 3 km</option>
+                    <option value="5" selected>Até 5 km</option>
+                    <option value="10">Até 10 km</option>
+                    <option value="20">Até 20 km</option>
+                </select>
+            </div>
+
+            <button class="search-btn" id="buscarLocais">🔍</button>
+        </div>
+    </section>
+
+    <section class="categories">
+        <a href="index.html" class="cat-item" style="text-decoration: none;">🐾<br>Todos</a>
+        <a href="vet.html" class="cat-item" style="text-decoration: none;">🏥<br>Vet</a>
+        <a href="hoteis.html" class="cat-item" style="text-decoration: none;">🏨<br>Hotéis</a>
+        <a href="restaurantes.html" class="cat-item" style="text-decoration: none;">🍽️<br>Restaurantes</a>
+        <a href="shoppings.html" class="cat-item" style="text-decoration: none;">🛍️<br>Shoppings</a>
+        <a href="parques.html" class="cat-item" style="text-decoration: none;">🌳<br>Parques</a>
+        <a href="mapa.html" class="cat-item active" style="text-decoration: none;">📍<br>Mapa</a>
+    </section>
+
+    <section class="mapa-hero">
+        <div>
+            <h1>Encontre locais pet friendly perto de você</h1>
+            <p>
+                Use sua localização atual ou informe um endereço para visualizar, no mapa,
+                estabelecimentos pet friendly próximos com filtros por categoria e distância.
+            </p>
+        </div>
+
+        <div class="mapa-actions">
+            <button class="btn-secondary" id="usarMinhaLocalizacao">Usar minha localização</button>
+        </div>
+    </section>
+
+    <section class="mapa-layout">
+        <div class="mapa-wrapper">
+            <div id="map"></div>
+        </div>
+
+        <aside class="mapa-sidebar">
+            <div class="sidebar-box">
+                <h3>Resultados próximos</h3>
+                <p id="resultadoInfo">Busque sua localização para visualizar os estabelecimentos.</p>
+            </div>
+
+            <div id="lista-estabelecimentos" class="lista-estabelecimentos">
+                <div class="empty-state">
+                    <span>📍</span>
+                    <p>Nenhum resultado carregado ainda.</p>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+</main>
+
+<footer class="footer-mapa">
+    <p>© 2026 Clube dos Pets - Mapa Pet Friendly</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="mapa.js"></script>
+</body>
+</html>

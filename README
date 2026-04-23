@@ -1,0 +1,114 @@
+# [Clube dos Pets](http://localhost:3000/index.html)
+
+Plataforma pet friendly baseada em geolocalização  
+Guia de produto, arquitetura e execução
+
+A aplicação pode ser acessada clicando no título.
+
+Um projeto acadêmico com foco em descoberta de estabelecimentos pet friendly, geolocalização, filtros por proximidade, autenticação e experiência de navegação orientada por mapa.
+# Visão Geral
+O Clube dos Pets centraliza informações de locais pet friendly em uma aplicação web voltada para tutores de animais. O sistema foi desenhado para reduzir a fricção de busca em cenários cotidianos, deslocamentos e situações que exigem agilidade, como emergências veterinárias ou planejamento de viagens.
+# Proposta de Valor
+A plataforma reúne, em um só fluxo, localização automática do usuário, busca por endereço digitado, mapa interativo, filtros por categoria e distância, avaliações e favoritos. A combinação desses recursos transforma uma busca dispersa em uma jornada objetiva e confiável.
+# Stack Atual
+```md
+Frontend  :: HTML + CSS + JavaScript
+Backend   :: Node.js + Express
+Mapa      :: Leaflet + OpenStreetMap
+Geocoding :: Nominatim
+Auth      :: JWT + bcryptjs
+Persist.  :: dados mockados nesta etapa
+```
+
+# Estrutura do Projeto
+```md
+Clube_dos_Pets_PI/
+├── Web/
+│   ├── index.html
+│   ├── mapa.html
+│   ├── login.html
+│   ├── cadastro-usuario.html
+│   ├── style.css
+│   ├── script.js
+│   └── mapa.js
+└── backend/
+    ├── src/
+    │   ├── controllers/
+    │   ├── routes/
+    │   ├── services/
+    │   ├── middlewares/
+    │   ├── data/
+    │   └── server.js
+    └── package.json
+```
+
+# Funcionalidades Implementadas
+```md
+- cadastro de usuário conectado ao backend
+- login com validação e geração de token JWT
+- listagem de categorias
+- listagem e consulta de estabelecimentos
+- filtro por categoria
+- cálculo de proximidade por latitude/longitude
+- geocodificação de endereço digitado
+- exibição de resultados em mapa interativo
+- avaliações e favoritos no backend
+```
+
+# Fluxo Principal
+```md
+1. o usuário acessa a aplicação
+2. faz cadastro ou login
+3. permite localização automática
+   ou informa um endereço manualmente
+4. o front consulta o backend
+5. o backend devolve os estabelecimentos próximos
+6. os resultados são plotados no mapa e listados em cards
+```
+
+# Endpoints Relevantes
+```md
+GET  /categorias
+GET  /estabelecimentos
+GET  /estabelecimentos/:id
+GET  /estabelecimentos/filtro?id_categoria=1
+GET  /estabelecimentos/proximos?latitude=-23.55&longitude=-46.63&distancia_maxima=5
+GET  /geocodificacao?endereco=Avenida%20Paulista,%20Sao%20Paulo
+POST /usuarios
+POST /usuarios/login
+GET  /auth/perfil
+```
+
+# Execução Local
+```md
+# backend
+cd backend
+npm install
+npm run dev
+
+# frontend
+abrir a pasta Web com Live Server
+ou abrir index.html em ambiente local compatível
+
+# backend padrão
+http://localhost:3000
+
+# frontend comum com Live Server
+http://localhost:3000/index.html
+```
+
+# Autenticação
+O login já está integrado entre front-end e back-end. Após a autenticação, o token JWT e os dados básicos do usuário ficam persistidos no navegador, preparando o projeto para evoluções como favoritos vinculados à conta, avaliações autenticadas e área de perfil.
+# Próximos Passos
+```md
+- migrar os dados mockados para MySQL
+- vincular favoritos ao front-end do mapa
+- publicar avaliações a partir da interface
+- proteger rotas por autenticação em mais telas
+- evoluir a área de perfil do usuário
+- preparar versão demonstrável para banca
+```
+
+# Observação
+O hyperlink aplicado ao título está configurado para um cenário comum de desenvolvimento local com Live Server. Caso sua porta, hostname ou rota inicial sejam diferentes, basta editar o link no documento ou no script gerador do arquivo.
+— fim do documento —
