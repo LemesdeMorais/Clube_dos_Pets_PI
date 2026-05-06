@@ -1,15 +1,5 @@
 const estabelecimentos = [
   {
-    id_estabelecimento: 1,
-    nome: 'Clínica Vet Amigo Fiel',
-    descricao: 'Atendimento veterinário com consultas e emergências.',
-    telefone: '(11) 99999-1111',
-    email_contato: 'contato@vetamigofiel.com',
-    site: 'www.vetamigofiel.com',
-    id_endereco: 1,
-    id_categoria: 1
-  },
-  {
     id_estabelecimento: 2,
     nome: 'Hotel Pet Feliz',
     descricao: 'Hospedagem para cães e gatos com monitoramento.',
