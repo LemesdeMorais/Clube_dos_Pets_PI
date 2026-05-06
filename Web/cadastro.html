@@ -1,38 +1,157 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anunciar Local - Clube dos Pets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Cadastro de Fornecedor - Clube dos Pets</title>
+    <style>
+        .login-container {
+            max-width: 550px; /* Um pouco mais largo para acomodar o formulário de local */
+            margin: 60px auto;
+            padding: 40px;
+            border: 1px solid var(--light-gray);
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            background: white;
+        }
+
+        .login-container h2 {
+            margin: 20px 0 10px;
+            font-size: 24px;
+        }
+
+        .login-container p {
+            color: var(--gray);
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .login-container label {
+            display: block;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--black);
+        }
+
+        .login-container input, 
+        .login-container select, 
+        .login-container textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .login-container input:focus, 
+        .login-container select:focus, 
+        .login-container textarea:focus {
+            border-color: var(--black);
+        }
+
+        .login-container textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .btn-login {
+            width: 100%;
+            background: var(--black);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            opacity: 0.9;
+        }
+
+        .file-input-label {
+            font-size: 13px;
+            color: var(--gray);
+            margin-top: -15px;
+            margin-bottom: 20px;
+            display: block;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-    <div class="container" style="padding: 50px 0;">
-        <h2>Cadastre seu Estabelecimento Pet Friendly</h2>
-        <p>Ajude tutores a encontrarem seu local com praticidade.</p>
+
+<header>
+    <div class="container header-content">
+        <a href="index.html" style="text-decoration: none; color: inherit;"><h2>🐾 Clube dos Pets</h2></a>
+        <nav>
+            <a href="index.html" class="btn-link">Início</a>
+            <a href="login.html" class="btn">Entrar</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="categories">
+        <a href="index.html" class="cat-item" style="text-decoration: none;">🐾<br>Todos</a>
+        <a href="vet.html" class="cat-item" style="text-decoration: none;">🏥<br>Vet</a>
+        <a href="hoteis.html" class="cat-item" style="text-decoration: none;">🏨<br>Hotéis</a>
+        <a href="restaurantes.html" class="cat-item" style="text-decoration: none;">🍽️<br>Restaurantes</a>
+        <a href="shoppings.html" class="cat-item" style="text-decoration: none;">🛍️<br>Shoppings</a>
+        <a href="parques.html" class="cat-item" style="text-decoration: none;">🌳<br>Parques</a>
+    </section>
+
+    <div class="login-container">
+        <img src="logo.jpeg" alt="Logo Clube dos Pets" style="height: 60px; object-fit: contain;">
+        <h2>Anunciar Local</h2>
+        <p>Cadastre seu estabelecimento e alcance milhares de tutores na região.</p>
         
-        <form id="formCadastro" style="max-width: 600px;">
-            <label>Nome do Local:</label>
-            <input type="text" placeholder="Ex: Hotel Pet Relax">
-            
-            <label>Categoria:</label>
-            <select>
-                <option>Restaurante/Bar</option>
-                <option>Hotel/Hospedagem</option>
-                <option>Veterinário</option>
-                <option>Shopping</option>
-                <option>Outros</option>
+        <form id="formCadastroFornecedor">
+            <label for="nomeLocal">Nome do Local</label>
+            <input type="text" id="nomeLocal" placeholder="Ex: Hotel Pet Relax" required>
+
+            <label for="categoria">Categoria</label>
+            <select id="categoria" required>
+                <option value="" disabled selected>Selecione uma categoria</option>
+                <option value="restaurante">Restaurante/Bar</option>
+                <option value="hotel">Hotel/Hospedagem</option>
+                <option value="vet">Veterinário</option>
+                <option value="shopping">Shopping</option>
+                <option value="parque">Parque/Lazer</option>
             </select>
-            
-            <label>Endereço Completo:</label>
-            <input type="text" placeholder="Rua, Número, Cidade/Estado e CEP">
-            
-            <label>Fotos do Local:</label>
-            <input type="file" multiple>
-            
-            <label>Descrição dos diferenciais:</label>
-            <textarea style="width: 100%; height: 100px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
-            
-            <button type="submit" class="btn-main" style="margin-top: 20px;">Finalizar Cadastro</button>
+
+            <label for="endereco">Endereço Completo</label>
+            <input type="text" id="endereco" placeholder="Rua, Número, Bairro - Cidade/SP" required>
+
+            <label for="fotos">Fotos do Local</label>
+            <input type="file" id="fotos" multiple accept="image/*">
+            <span class="file-input-label">Formatos aceitos: JPG, PNG. Máximo de 5 fotos.</span>
+
+            <label for="descricao">Diferenciais Pet Friendly</label>
+            <textarea id="descricao" placeholder="Descreva o que seu local oferece (ex: aceita pet porte grande, área cercada, etc...)"></textarea>
+
+            <button type="submit" class="btn-login">Finalizar Cadastro</button>
         </form>
     </div>
+</main>
+
+<footer style="padding: 40px 0; text-align: center; color: var(--gray); font-size: 13px; border-top: 1px solid var(--light-gray); margin-top: 50px;">
+    <p>© 2026 Clube dos Pets - Encontre o melhor para o seu amigo.</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
