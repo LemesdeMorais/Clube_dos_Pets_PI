@@ -1,16 +1,5 @@
 const enderecos = [
   {
-    id_endereco: 1,
-    logradouro: 'Rua das Flores',
-    numero: '120',
-    bairro: 'Centro',
-    cidade: 'São Paulo',
-    uf: 'SP',
-    cep: '01000-000',
-    latitude: -23.55052,
-    longitude: -46.633308
-  },
-  {
     id_endereco: 2,
     logradouro: 'Avenida Paulista',
     numero: '900',
