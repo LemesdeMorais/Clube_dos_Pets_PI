@@ -70,70 +70,11 @@
         <a href="restaurantes.html" class="cat-item" style="text-decoration: none;">🍽️<br>Restaurantes</a>
         <a href="shoppings.html" class="cat-item" style="text-decoration: none;">🛍️<br>Shoppings</a>
         <a href="parques.html" class="cat-item" style="text-decoration: none;">🌳<br>Parques</a>
+        <a href="mapa.html" class="cat-item" style="text-decoration: none;">📍<br>Mapa</a>
     </section>
 
-    <section class="grid">
-
-        <div class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=500" alt="Resort Pet">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Resort Quinta das Patas</h3>
-                    <span class="rating">⭐ 4.9</span>
-                </div>
-                <p>Araras, São Paulo</p>
-                <p class="price"><b>R$ 180</b> noite</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=500" alt="Pousada">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Pousada Recanto Animal</h3>
-                    <span class="rating">⭐ 4.8</span>
-                </div>
-                <p>Ambiente rural e espaçoso</p>
-                <p class="price"><b>R$ 130</b> noite</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="img/hotel1.jpg" alt="Hotel Urbano">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Pet City Hotel</h3>
-                    <span class="rating">⭐ 4.6</span>
-                </div>
-                <p>Próximo ao centro de Araras</p>
-                <p class="price"><b>R$ 110</b> noite</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=500" alt="Hospedagem Familiar">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Cantinho do Totó</h3>
-                    <span class="rating">⭐ 5.0</span>
-                </div>
-                <p>Hospedagem domiciliar afetuosa</p>
-                <p class="price"><b>R$ 95</b> noite</p>
-            </div>
-        </div>
-
+    <section id="grid-estabelecimentos" class="grid">
+        <p style="text-align:center;padding:40px;color:var(--gray)">Carregando...</p>
     </section>
 
 </main>
@@ -146,33 +87,9 @@
     <p>© 2026 Clube dos Pets - Viaje com seu Pet</p>
 </footer>
 
-<script>
-    function gerenciarNav() {
-        const btnEntrar = document.getElementById('btn-entrar');
-        const btnSair = document.getElementById('btn-sair');
-        
-        // Verifica se existe a marcação de login no navegador
-        const logado = localStorage.getItem('usuarioLogado') === 'true';
-
-        if (logado) {
-            btnEntrar.classList.add('hidden');
-            btnSair.classList.remove('hidden');
-        } else {
-            btnEntrar.classList.remove('hidden');
-            btnSair.classList.add('hidden');
-        }
-    }
-
-    function logout() {
-        // Remove o estado de login e recarrega a página
-        localStorage.removeItem('usuarioLogado');
-        alert("Você saiu da sua conta.");
-        window.location.reload(); 
-    }
-
-    // Executa ao carregar a página
-    window.onload = gerenciarNav;
-</script>
+<script src="auth.js"></script>
+<script>const CATEGORIA_ID = 2;</script>
+<script src="categoria-page.js"></script>
 
 </body>
 </html>

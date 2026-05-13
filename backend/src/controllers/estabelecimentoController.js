@@ -9,6 +9,9 @@ const montarEstabelecimentoCompleto = (linha) => ({
   site: linha.site,
   id_endereco: linha.id_endereco,
   id_categoria: linha.id_categoria,
+  media_avaliacao: linha.media_avaliacao !== null ? Number(linha.media_avaliacao) : 0,
+  total_avaliacoes: linha.total_avaliacoes || 0,
+  foto_url: linha.foto_url || null,
   categoria: linha.nome_categoria
     ? {
         id_categoria: linha.id_categoria,
@@ -48,7 +51,10 @@ const consultaBaseEstabelecimentos = `
     en.uf,
     en.cep,
     en.latitude,
-    en.longitude
+    en.longitude,
+    ROUND(COALESCE((SELECT AVG(nota) FROM avaliacao WHERE id_estabelecimento = e.id_estabelecimento), 0), 1) AS media_avaliacao,
+    COALESCE((SELECT COUNT(*) FROM avaliacao WHERE id_estabelecimento = e.id_estabelecimento), 0) AS total_avaliacoes,
+    (SELECT url_foto FROM foto_estabelecimento WHERE id_estabelecimento = e.id_estabelecimento ORDER BY id_foto ASC LIMIT 1) AS foto_url
   FROM estabelecimento e
   INNER JOIN categoria c ON c.id_categoria = e.id_categoria
   INNER JOIN endereco en ON en.id_endereco = e.id_endereco

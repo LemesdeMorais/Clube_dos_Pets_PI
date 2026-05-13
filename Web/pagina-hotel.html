@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Feliz - Hospedagem de Luxo | Clube dos Pets</title>
+    <title>Estabelecimento | Clube dos Pets</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Padronização do Botão Sair e Nav */
         .btn-sair {
             background: #717171;
             color: #fff;
@@ -22,35 +21,27 @@
             display: inline-block;
         }
         .btn-sair:hover { opacity: 0.8; }
-        
         .hidden { display: none !important; }
-
         nav { display: flex; align-items: center; gap: 15px; }
 
-        /* Estilos originais da página */
         .hotel-header { padding: 25px 0 15px; }
         .hotel-header h1 { font-size: 26px; margin-bottom: 8px; }
-        .hotel-meta { display: flex; gap: 15px; font-size: 14px; font-weight: 600; text-decoration: underline; }
+        .hotel-meta { display: flex; gap: 15px; font-size: 14px; font-weight: 600; }
 
-        .photo-gallery {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            grid-template-rows: 200px 200px;
-            gap: 10px;
-            margin: 20px 0 40px;
+        .photo-main {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
             border-radius: 15px;
-            overflow: hidden;
+            margin: 20px 0 40px;
         }
-        .photo-gallery img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; cursor: pointer; }
-        .photo-gallery img:hover { filter: brightness(0.8); }
-        .photo-main { grid-row: span 2; }
 
         .details-layout { display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 80px; margin-bottom: 60px; }
 
         .description h2 { font-size: 22px; margin-bottom: 15px; border-top: 1px solid var(--light-gray); padding-top: 30px; }
         .description p { color: var(--gray); line-height: 1.6; margin-bottom: 20px; }
 
-        .booking-card {
+        .info-card {
             border: 1px solid var(--light-gray);
             border-radius: 15px;
             padding: 24px;
@@ -60,21 +51,25 @@
             height: fit-content;
             background: white;
         }
-        .booking-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .booking-header .price { font-size: 22px; font-weight: 700; }
-        
-        .booking-dates {
-            border: 1px solid #717171;
+        .info-card h3 { font-size: 18px; margin-bottom: 15px; }
+        .info-card p { font-size: 14px; color: var(--gray); margin-bottom: 8px; }
+        .info-card a { color: var(--black); }
+
+        .btn-favoritar {
+            width: 100%;
+            background: white;
+            color: black;
+            border: 2px solid black;
+            padding: 12px;
             border-radius: 8px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            margin-bottom: 15px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.2s;
         }
-        .date-input { padding: 10px; border-bottom: 1px solid #717171; }
-        .date-input:first-child { border-right: 1px solid #717171; }
-        .date-input label { display: block; font-size: 10px; font-weight: 800; text-transform: uppercase; }
-        .date-input input { border: none; outline: none; width: 100%; font-size: 14px; background: transparent; }
-        .pet-select { grid-column: span 2; padding: 10px; }
+        .btn-favoritar:hover { background: black; color: white; }
+        .btn-favoritar.favoritado { background: #ff385c; border-color: #ff385c; color: white; }
 
         .reviews-section { border-top: 1px solid var(--light-gray); padding: 40px 0; }
         .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 25px; }
@@ -83,9 +78,42 @@
         .review-user b { font-size: 16px; }
         .review-user span { color: var(--gray); font-size: 14px; }
 
+        .form-review {
+            background: #f9f9f9;
+            border: 1px solid var(--light-gray);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        .form-review h3 { margin-bottom: 15px; font-size: 18px; }
+        .form-review select, .form-review textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 12px;
+            font-family: inherit;
+        }
+        .form-review textarea { resize: vertical; min-height: 80px; }
+        .form-review button {
+            background: black;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .form-review button:hover { opacity: 0.85; }
+
+        .loading-page { text-align: center; padding: 80px; color: var(--gray); font-size: 18px; }
+
         @media (max-width: 992px) {
             .details-layout { grid-template-columns: 1fr; gap: 40px; }
-            .booking-card { position: static; }
+            .info-card { position: static; }
+            .reviews-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -96,144 +124,272 @@
         <a href="index.html" style="text-decoration: none; color: inherit;"><h2>🐾 Clube dos Pets</h2></a>
         <nav id="nav-menu">
             <a href="index.html" class="btn-link">Início</a>
+            <a href="perfil.html" id="link-perfil" class="btn-link hidden">Meu Perfil</a>
             <a href="fornecedor.html" class="btn-link">Anunciar local</a>
             <a href="login.html" id="btn-entrar" class="btn">Entrar</a>
-            <button onclick="logout()" id="btn-sair" class="btn-sair hidden">Sair</button>
+            <button id="btn-sair" class="btn-sair hidden">Sair</button>
         </nav>
     </div>
 </header>
 
-<main class="container">
-    <div class="hotel-header">
-        <h1>Pet Feliz - Hospedagem e SPA Canino</h1>
-        <div class="hotel-meta">
-            <span>⭐ 4.9 (128 comentários)</span>
-            <span>Araras, São Paulo</span>
-        </div>
-    </div>
-
-    <section class="photo-gallery">
-        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800" class="photo-main" alt="Área externa">
-        <img src="https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&fit=crop&w=500" alt="Quarto pet">
-        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=500" alt="Banho">
-        <img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?auto=format&fit=crop&w=500" alt="Brincadeira">
-        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=500" alt="Pet Feliz">
-    </section>
-
-    <div class="details-layout">
-        <section class="description">
-            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px;">
-                <div>
-                    <h2 style="border:none; padding:0; margin:0;">Espaço gerido por Ana Silva</h2>
-                    <p>8 hóspedes pet · 4 quartos · Câmeras 24h</p>
-                </div>
-            </div>
-
-            <h2>O que este lugar oferece</h2>
-            <p>O Pet Feliz é um hotel conceito em Araras, focado em oferecer liberdade e segurança. Contamos com monitoramento em tempo real que você pode acessar pelo celular, área de recreação gramada e dormitórios climatizados.</p>
-            <ul style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; color: var(--gray);">
-                <li>✅ Quintal amplo</li>
-                <li>✅ Ar condicionado</li>
-                <li>✅ Veterinário de plantão</li>
-                <li>✅ Relatórios diários com fotos</li>
-            </ul>
-        </section>
-
-        <aside class="booking-card">
-            <div class="booking-header">
-                <span class="price">R$ 85 <span>/ noite</span></span>
-                <span>⭐ 4.9</span>
-            </div>
-
-            <div class="booking-dates">
-                <div class="date-input">
-                    <label>Check-in</label>
-                    <input type="date" value="2026-05-10">
-                </div>
-                <div class="date-input">
-                    <label>Check-out</label>
-                    <input type="date" value="2026-05-15">
-                </div>
-                <div class="pet-select">
-                    <label style="display: block; font-size: 10px; font-weight: 800; text-transform: uppercase;">Porte do Pet</label>
-                    <select style="width: 100%; border: none; outline: none; font-size: 14px; background: transparent;">
-                        <option>Pequeno (até 10kg)</option>
-                        <option>Médio (até 20kg)</option>
-                        <option>Grande (acima de 20kg)</option>
-                    </select>
-                </div>
-            </div>
-
-            <button onclick="verificarAcessoReserva()" class="btn" style="width: 100%; padding: 15px; margin-bottom: 15px; border: none; cursor: pointer;">
-                Reservar
-            </button>
-            <p style="text-align: center; font-size: 14px; color: var(--gray);">Você não será cobrado agora</p>
-        </aside>
-    </div>
-
-    <section class="reviews-section">
-        <h2>⭐ 4.9 · 128 comentários</h2>
-        <div class="reviews-grid">
-            <div class="review-item">
-                <div class="review-user">
-                    <b>Fernanda Oliveira</b>
-                    <span>Maio de 2026</span>
-                </div>
-                <p>O Bob adorou a estadia! Recebi fotos dele brincando o dia todo. A equipe é muito carinhosa e o ambiente é extremamente limpo.</p>
-            </div>
-            <div class="review-item">
-                <div class="review-user">
-                    <b>Ricardo Santos</b>
-                    <span>Abril de 2026</span>
-                </div>
-                <p>Melhor hotel pet de Araras. Deixei o meu Golden por uma semana e fiquei muito tranquilo com as câmeras 24h.</p>
-            </div>
-        </div>
-    </section>
+<main class="container" id="conteudo-pagina">
+    <p class="loading-page">Carregando estabelecimento...</p>
 </main>
 
 <footer style="padding: 40px 0; text-align: center; color: var(--gray); font-size: 13px; border-top: 1px solid var(--light-gray);">
-    <p>© 2026 Clube dos Pets - Hospedagem com Amor</p>
+    <p>© 2026 Clube dos Pets</p>
 </footer>
 
+<script src="auth.js"></script>
 <script>
-    // Gerencia a exibição dos botões na Nav
-    function gerenciarNav() {
-        const btnEntrar = document.getElementById('btn-entrar');
-        const btnSair = document.getElementById('btn-sair');
-        const logado = localStorage.getItem('usuarioLogado') === 'true';
+    const IMAGENS_CAT = {
+        1: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800',
+        2: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800',
+        3: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800',
+        4: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800',
+        5: 'https://images.unsplash.com/photo-1551730459-92db2a308d6a?auto=format&fit=crop&w=800',
+        6: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=800',
+        7: 'https://images.unsplash.com/photo-1543489822-c49534f3271f?auto=format&fit=crop&w=800'
+    };
 
-        if (logado) {
-            btnEntrar.classList.add('hidden');
-            btnSair.classList.remove('hidden');
-        } else {
-            btnEntrar.classList.remove('hidden');
-            btnSair.classList.add('hidden');
+    let estabelecimentoAtual = null;
+
+    function formatarData(dataStr) {
+        return new Date(dataStr).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+    }
+
+    function estrelas(nota) {
+        return '⭐'.repeat(nota);
+    }
+
+    function renderizarAvaliacoes(avaliacoes) {
+        if (!avaliacoes.length) {
+            return '<p style="color:var(--gray)">Nenhuma avaliação ainda. Seja o primeiro a avaliar!</p>';
+        }
+        return `<div class="reviews-grid">
+            ${avaliacoes.map(av => `
+                <div class="review-item">
+                    <div class="review-user">
+                        <b>${av.usuario ? av.usuario.nome : 'Usuário'}</b>
+                        <span>${formatarData(av.data_avaliacao)}</span>
+                    </div>
+                    <div>${estrelas(av.nota)}</div>
+                    <p>${av.comentario || ''}</p>
+                </div>
+            `).join('')}
+        </div>`;
+    }
+
+    function renderizarFormReview(idEstabelecimento) {
+        if (!isLoggedIn()) {
+            return `<p style="color:var(--gray);margin-top:20px;">
+                <a href="login.html" style="color:var(--black);font-weight:700;">Faça login</a> para deixar sua avaliação.
+            </p>`;
+        }
+        return `
+            <div class="form-review">
+                <h3>✍️ Deixe sua avaliação</h3>
+                <select id="nota-review">
+                    <option value="">Selecione a nota</option>
+                    <option value="5">⭐⭐⭐⭐⭐ Excelente</option>
+                    <option value="4">⭐⭐⭐⭐ Bom</option>
+                    <option value="3">⭐⭐⭐ Regular</option>
+                    <option value="2">⭐⭐ Ruim</option>
+                    <option value="1">⭐ Péssimo</option>
+                </select>
+                <textarea id="comentario-review" placeholder="Conta como foi sua experiência..."></textarea>
+                <button onclick="enviarAvaliacao(${idEstabelecimento})">Enviar avaliação</button>
+                <p id="msg-review" style="margin-top:10px;font-size:13px;"></p>
+            </div>
+        `;
+    }
+
+    async function enviarAvaliacao(idEstabelecimento) {
+        const nota = document.getElementById('nota-review').value;
+        const comentario = document.getElementById('comentario-review').value.trim();
+        const msg = document.getElementById('msg-review');
+        const usuario = getUsuario();
+
+        if (!nota) { msg.textContent = 'Selecione uma nota.'; return; }
+        if (!usuario) { msg.textContent = 'Faça login para avaliar.'; return; }
+
+        try {
+            const resposta = await fetch(`${API_BASE_URL}/avaliacoes`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    nota: Number(nota),
+                    comentario: comentario || null,
+                    id_usuario: usuario.id_usuario,
+                    id_estabelecimento: idEstabelecimento
+                })
+            });
+
+            const dados = await resposta.json();
+
+            if (!resposta.ok) {
+                msg.textContent = dados.mensagem || 'Erro ao enviar avaliação.';
+                return;
+            }
+
+            msg.style.color = 'green';
+            msg.textContent = 'Avaliação enviada com sucesso!';
+            document.getElementById('nota-review').value = '';
+            document.getElementById('comentario-review').value = '';
+
+            // recarrega avaliações
+            await carregarAvaliacoes(idEstabelecimento);
+        } catch (erro) {
+            console.error(erro);
+            msg.textContent = 'Erro ao enviar avaliação.';
         }
     }
 
-    function logout() {
-        localStorage.removeItem('usuarioLogado');
-        alert("Você saiu da sua conta.");
-        window.location.reload();
-    }
+    async function carregarAvaliacoes(idEstabelecimento) {
+        try {
+            const resposta = await fetch(
+                `${API_BASE_URL}/avaliacoes/filtro?id_estabelecimento=${idEstabelecimento}`
+            );
+            const avaliacoes = await resposta.json();
 
-    // Gerencia a ação do botão Reservar baseado no login real
-    function verificarAcessoReserva() {
-        const logado = localStorage.getItem('usuarioLogado') === 'true';
-
-        if (logado) {
-            // Se estiver logado, avança para a página de finalização do pagamento
-            window.location.href = "pagamento.html";
-        } else {
-            // Se não estiver logado, exige o login
-            alert("🔒 Para sua segurança, faça login para continuar com a reserva.");
-            window.location.href = "login.html";
+            const secao = document.getElementById('secao-avaliacoes');
+            if (secao) {
+                secao.innerHTML = renderizarAvaliacoes(avaliacoes);
+            }
+        } catch (erro) {
+            console.error('Erro ao carregar avaliações:', erro);
         }
     }
 
-    // Inicia a verificação ao carregar a página
-    window.onload = gerenciarNav;
+    async function toggleFavorito(idEstabelecimento, btnEl) {
+        if (!isLoggedIn()) {
+            alert('Faça login para favoritar.');
+            window.location.href = 'login.html';
+            return;
+        }
+
+        const usuario = getUsuario();
+        const jaNosIds = btnEl.dataset.favoritoId;
+
+        if (jaNosIds) {
+            // remover
+            try {
+                await fetch(`${API_BASE_URL}/favoritos/${jaNosIds}`, { method: 'DELETE' });
+                btnEl.textContent = '🤍 Salvar nos favoritos';
+                btnEl.classList.remove('favoritado');
+                btnEl.dataset.favoritoId = '';
+            } catch (e) { console.error(e); }
+        } else {
+            // adicionar
+            try {
+                const resposta = await fetch(`${API_BASE_URL}/favoritos`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id_usuario: usuario.id_usuario, id_estabelecimento: idEstabelecimento })
+                });
+                const dados = await resposta.json();
+
+                if (resposta.ok) {
+                    btnEl.textContent = '❤️ Salvo nos favoritos';
+                    btnEl.classList.add('favoritado');
+                    btnEl.dataset.favoritoId = dados.favorito.id_favorito;
+                } else {
+                    alert(dados.mensagem || 'Erro ao favoritar.');
+                }
+            } catch (e) { console.error(e); }
+        }
+    }
+
+    async function carregarEstabelecimento() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        const main = document.getElementById('conteudo-pagina');
+
+        if (!id) {
+            main.innerHTML = '<p class="loading-page">Estabelecimento não informado.</p>';
+            return;
+        }
+
+        try {
+            const [respEst, respAv] = await Promise.all([
+                fetch(`${API_BASE_URL}/estabelecimentos/${id}`),
+                fetch(`${API_BASE_URL}/avaliacoes/filtro?id_estabelecimento=${id}`)
+            ]);
+
+            if (!respEst.ok) {
+                main.innerHTML = '<p class="loading-page">Estabelecimento não encontrado.</p>';
+                return;
+            }
+
+            const est = await respEst.json();
+            const avaliacoes = await respAv.json();
+            estabelecimentoAtual = est;
+
+            document.title = `${est.nome} | Clube dos Pets`;
+
+            const img = est.foto_url || IMAGENS_CAT[est.id_categoria] || IMAGENS_CAT[1];
+            const rating = est.media_avaliacao > 0
+                ? `⭐ ${est.media_avaliacao} (${est.total_avaliacoes} avaliação${est.total_avaliacoes !== 1 ? 'ões' : ''})`
+                : 'Sem avaliações';
+
+            const endFormatado = est.endereco
+                ? `${est.endereco.logradouro}, ${est.endereco.numero} — ${est.endereco.bairro}, ${est.endereco.cidade}, ${est.endereco.uf}`
+                : '';
+
+            main.innerHTML = `
+                <div class="hotel-header">
+                    <h1>${est.nome}</h1>
+                    <div class="hotel-meta">
+                        <span>${rating}</span>
+                        <span>${est.endereco ? `${est.endereco.cidade}, ${est.endereco.uf}` : ''}</span>
+                        ${est.categoria ? `<span>${est.categoria.nome_categoria}</span>` : ''}
+                    </div>
+                </div>
+
+                <img src="${img}" class="photo-main" alt="${est.nome}"
+                     onerror="this.src='${IMAGENS_CAT[1]}'">
+
+                <div class="details-layout">
+                    <section class="description">
+                        <h2 style="border:none;padding:0;margin-bottom:15px;">${est.descricao || ''}</h2>
+                        <h2>Informações</h2>
+                        <p>${endFormatado}</p>
+                        ${est.telefone ? `<p>📞 ${est.telefone}</p>` : ''}
+                        ${est.email_contato ? `<p>✉️ ${est.email_contato}</p>` : ''}
+                        ${est.site ? `<p>🌐 <a href="https://${est.site}" target="_blank">${est.site}</a></p>` : ''}
+                    </section>
+
+                    <aside class="info-card">
+                        <h3>🐾 ${est.nome}</h3>
+                        ${est.categoria ? `<p><b>Categoria:</b> ${est.categoria.nome_categoria}</p>` : ''}
+                        ${est.telefone ? `<p><b>Telefone:</b> ${est.telefone}</p>` : ''}
+                        ${est.email_contato ? `<p><b>Email:</b> ${est.email_contato}</p>` : ''}
+                        <p><b>Avaliação:</b> ${rating}</p>
+                        <button class="btn-favoritar" id="btn-favoritar" onclick="toggleFavorito(${est.id_estabelecimento}, this)">
+                            🤍 Salvar nos favoritos
+                        </button>
+                    </aside>
+                </div>
+
+                <section class="reviews-section">
+                    <h2>Avaliações</h2>
+                    <div id="secao-avaliacoes">
+                        ${renderizarAvaliacoes(avaliacoes)}
+                    </div>
+                    ${renderizarFormReview(est.id_estabelecimento)}
+                </section>
+            `;
+
+        } catch (erro) {
+            console.error('Erro ao carregar estabelecimento:', erro);
+            main.innerHTML = '<p class="loading-page">Erro ao carregar. Verifique se o servidor está rodando.</p>';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('btn-sair').addEventListener('click', logout);
+        carregarEstabelecimento();
+    });
 </script>
 
 </body>

@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Estilização do Botão Sair */
         .btn-sair {
             background: #717171;
             color: #fff;
@@ -22,10 +21,9 @@
             display: inline-block;
         }
         .btn-sair:hover { opacity: 0.8; }
-        
         .hidden { display: none !important; }
-
         nav { display: flex; align-items: center; gap: 15px; }
+        .grid-loading { text-align: center; padding: 40px; color: var(--gray); }
     </style>
 </head>
 <body>
@@ -35,9 +33,10 @@
         <a href="index.html" style="text-decoration: none; color: inherit;"><h2>🐾 Clube dos Pets</h2></a>
         <nav id="nav-menu">
             <a href="index.html" class="btn-link">Início</a>
+            <a href="perfil.html" id="link-perfil" class="btn-link hidden">Meu Perfil</a>
             <a href="fornecedor.html" class="btn-link">Anunciar local</a>
             <a href="login.html" id="btn-entrar" class="btn">Entrar</a>
-            <button onclick="logout()" id="btn-sair" class="btn-sair hidden">Sair</button>
+            <button id="btn-sair" class="btn-sair hidden">Sair</button>
         </nav>
     </div>
 </header>
@@ -48,21 +47,24 @@
         <div class="search-bar">
             <div class="search-item">
                 <label>Onde</label>
-                <input type="text" placeholder="Cidade ou endereço">
+                <input type="text" id="buscaEndereco" placeholder="Cidade ou endereço">
             </div>
 
             <div class="search-item">
                 <label>Categoria</label>
-                <select>
-                    <option>Todos os serviços</option>
-                    <option>Veterinário</option>
-                    <option>Hotel</option>
-                    <option>Restaurante</option>
-                    <option>Shopping</option>
+                <select id="buscaCategoria">
+                    <option value="">Todos os serviços</option>
+                    <option value="1">Veterinário</option>
+                    <option value="2">Hotéis para Pets</option>
+                    <option value="3">Restaurantes</option>
+                    <option value="4">Shoppings</option>
+                    <option value="5">Parques</option>
+                    <option value="6">Casas de Ração</option>
+                    <option value="7">Bares</option>
                 </select>
             </div>
 
-            <button class="search-btn">🔍</button>
+            <button class="search-btn" id="btnBuscar">🔍</button>
         </div>
     </section>
 
@@ -73,127 +75,89 @@
         <a href="restaurantes.html" class="cat-item" style="text-decoration: none;">🍽️<br>Restaurantes</a>
         <a href="shoppings.html" class="cat-item" style="text-decoration: none;">🛍️<br>Shoppings</a>
         <a href="parques.html" class="cat-item" style="text-decoration: none;">🌳<br>Parques</a>
+        <a href="mapa.html" class="cat-item" style="text-decoration: none;">📍<br>Mapa</a>
     </section>
 
-    <section class="grid">
-
-        <a href="pagina-hotel.html" style="text-decoration: none; color: inherit;" class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=500" alt="Hotel Pet Feliz">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Hotel Pet Feliz</h3>
-                    <span class="rating">⭐ 4.8</span>
-                </div>
-                <p>Hospedagem pet • Araras, SP</p>
-                <p class="price"><b>R$ 85</b> noite</p>
-            </div>
-        </a>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=500" alt="Vet">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Vet Care</h3>
-                    <span class="rating">⭐ 4.9</span>
-                </div>
-                <p>Clínica veterinária • 2km de você</p>
-                <p class="price" style="color: #27ae60;">Aberto agora</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500" alt="Restaurante">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Bistrô do Totó</h3>
-                    <span class="rating">⭐ 4.7</span>
-                </div>
-                <p>Restaurante Pet Friendly</p>
-                <p class="price"><b>Inclusivo</b> para todos os portes</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="img/shopping.jpg" alt="Shopping">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Shopping Araras Center</h3>
-                    <span class="rating">⭐ 4.7</span>
-                </div>
-                <p>Centro Comercial • Pet Friendly</p>
-                <p class="price">Permitido em áreas comuns</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=500" alt="Parque">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Parque Ecológico</h3>
-                    <span class="rating">⭐ 4.9</span>
-                </div>
-                <p>Lazer ao ar livre • Araras, SP</p>
-                <p class="price" style="color: #27ae60;">Entrada Gratuita</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=500" alt="Estética Pet">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Estética Canina Fashion</h3>
-                    <span class="rating">⭐ 4.6</span>
-                </div>
-                <p>Banho, Tosa e SPA • 1,5km de você</p>
-                <p class="price"><b>R$ 80</b> (Porte pequeno)</p>
-            </div>
-        </div>
-
+    <section id="grid-estabelecimentos" class="grid">
+        <p class="grid-loading">Carregando estabelecimentos...</p>
     </section>
+
 </main>
 
 <a href="mapa.html" class="floating-map-btn">Mostrar mapa 🗺️</a>
 
+<script src="auth.js"></script>
 <script>
-    function gerenciarNav() {
-        const btnEntrar = document.getElementById('btn-entrar');
-        const btnSair = document.getElementById('btn-sair');
-        const logado = localStorage.getItem('usuarioLogado') === 'true';
+    const IMAGENS_PADRAO = {
+        1: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=500',
+        2: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=500',
+        3: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500',
+        4: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=500',
+        5: 'https://images.unsplash.com/photo-1567300738435-f3e7c6e4a8e9?auto=format&fit=crop&w=500',
+        6: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=500',
+        7: 'https://images.unsplash.com/photo-1543489822-c49534f3271f?auto=format&fit=crop&w=500'
+    };
 
-        if (logado) {
-            btnEntrar.classList.add('hidden');
-            btnSair.classList.remove('hidden');
-        } else {
-            btnEntrar.classList.remove('hidden');
-            btnSair.classList.add('hidden');
+    function renderizarCard(item) {
+        const img = item.foto_url || IMAGENS_PADRAO[item.id_categoria] || IMAGENS_PADRAO[1];
+        const rating = item.media_avaliacao > 0
+            ? `⭐ ${item.media_avaliacao}`
+            : '<span style="color:var(--gray)">Sem avaliações</span>';
+        const local = item.endereco ? `${item.endereco.cidade}, ${item.endereco.uf}` : '';
+
+        return `
+            <a href="pagina-hotel.html?id=${item.id_estabelecimento}" style="text-decoration: none; color: inherit;" class="card">
+                <div class="img-box">
+                    <img src="${img}" alt="${item.nome}" onerror="this.src='https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=500'">
+                    <span class="fav">♡</span>
+                </div>
+                <div class="card-info">
+                    <div class="card-header">
+                        <h3>${item.nome}</h3>
+                        <span class="rating">${rating}</span>
+                    </div>
+                    <p>${item.descricao || ''}</p>
+                    <p class="price">${local}</p>
+                </div>
+            </a>
+        `;
+    }
+
+    async function carregarEstabelecimentos() {
+        const grid = document.getElementById('grid-estabelecimentos');
+        try {
+            const resposta = await fetch(`${API_BASE_URL}/estabelecimentos`);
+            const dados = await resposta.json();
+
+            if (!dados.length) {
+                grid.innerHTML = '<p class="grid-loading">Nenhum estabelecimento cadastrado.</p>';
+                return;
+            }
+
+            grid.innerHTML = dados.map(renderizarCard).join('');
+        } catch (erro) {
+            console.error('Erro ao carregar estabelecimentos:', erro);
+            grid.innerHTML = '<p class="grid-loading">Erro ao carregar. Verifique se o servidor está rodando.</p>';
         }
     }
 
-    function logout() {
-        localStorage.removeItem('usuarioLogado');
-        alert("Você saiu da sua conta.");
-        window.location.reload();
-    }
+    document.getElementById('btnBuscar').addEventListener('click', () => {
+        const endereco = document.getElementById('buscaEndereco').value.trim();
+        const categoria = document.getElementById('buscaCategoria').value;
+        const params = new URLSearchParams();
+        if (endereco) params.set('endereco', endereco);
+        if (categoria) params.set('categoria', categoria);
+        window.location.href = `mapa.html?${params.toString()}`;
+    });
 
-    window.onload = gerenciarNav;
+    document.getElementById('buscaEndereco').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') document.getElementById('btnBuscar').click();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('btn-sair').addEventListener('click', logout);
+        carregarEstabelecimentos();
+    });
 </script>
 
 </body>

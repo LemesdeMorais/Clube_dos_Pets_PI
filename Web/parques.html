@@ -78,68 +78,8 @@
         <p style="color: var(--gray); font-size: 14px;">Os melhores lugares para o seu pet correr, brincar e socializar.</p>
     </div>
 
-    <section class="grid">
-
-        <div class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=500" alt="Cães brincando">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Parque Ecológico Gilberto Rüegger</h3>
-                    <span class="rating">⭐ 4.9</span>
-                </div>
-                <p>Araras, SP • Ampla área verde</p>
-                <p class="price" style="color: #27ae60; font-weight: 600;">Entrada Gratuita</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=500" alt="Parque Urbano">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Praça Barão de Araras (Espaço Pet)</h3>
-                    <span class="rating">⭐ 4.6</span>
-                </div>
-                <p>Área cercada para cães soltos</p>
-                <p class="price">Ideal para socialização</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1551730459-92db2a308d6a?auto=format&fit=crop&w=500" alt="Trilha com pet">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Parque Municipal de Araras</h3>
-                    <span class="rating">⭐ 4.7</span>
-                </div>
-                <p>Trilhas leves para caminhada</p>
-                <p class="price">Uso obrigatório de guia</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?auto=format&fit=crop&w=500" alt="Dog Park">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Espaço Pet Amigo</h3>
-                    <span class="rating">⭐ 4.8</span>
-                </div>
-                <p>Equipamentos de Agility</p>
-                <p class="price">A 1,2 km de você</p>
-            </div>
-        </div>
-
+    <section id="grid-estabelecimentos" class="grid">
+        <p style="text-align:center;padding:40px;color:var(--gray)">Carregando...</p>
     </section>
 
 </main>
@@ -152,30 +92,9 @@
     <p>© 2026 Clube dos Pets - Mais liberdade para o seu melhor amigo.</p>
 </footer>
 
-<script>
-    // Gerencia o estado da navegação
-    function gerenciarNav() {
-        const btnEntrar = document.getElementById('btn-entrar');
-        const btnSair = document.getElementById('btn-sair');
-        const logado = localStorage.getItem('usuarioLogado') === 'true';
-
-        if (logado) {
-            btnEntrar.classList.add('hidden');
-            btnSair.classList.remove('hidden');
-        } else {
-            btnEntrar.classList.remove('hidden');
-            btnSair.classList.add('hidden');
-        }
-    }
-
-    function logout() {
-        localStorage.removeItem('usuarioLogado');
-        alert("Você saiu da sua conta.");
-        window.location.reload();
-    }
-
-    window.onload = gerenciarNav;
-</script>
+<script src="auth.js"></script>
+<script>const CATEGORIA_ID = 5;</script>
+<script src="categoria-page.js"></script>
 
 </body>
 </html>

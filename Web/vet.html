@@ -70,6 +70,7 @@
         <a href="restaurantes.html" class="cat-item" style="text-decoration: none;">🍽️<br>Restaurantes</a>
         <a href="shoppings.html" class="cat-item" style="text-decoration: none;">🛍️<br>Shoppings</a>
         <a href="parques.html" class="cat-item" style="text-decoration: none;">🌳<br>Parques</a>
+        <a href="mapa.html" class="cat-item" style="text-decoration: none;">📍<br>Mapa</a>
     </section>
 
     <div style="padding: 20px 0;">
@@ -77,68 +78,8 @@
         <p style="color: var(--gray); font-size: 14px;">Encontre assistência médica rápida e segura para seu pet.</p>
     </div>
 
-    <section class="grid">
-
-        <div class="card">
-            <div class="img-box">
-                <img src="img/vet1.jpg" alt="Hospital Veterinário">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Hospital Veterinário Trusty Pet</h3>
-                    <span class="rating">⭐ 5.0</span>
-                </div>
-                <p>Emergência 24h • Araras, SP</p>
-                <p class="price" style="color: #d32f2f; font-weight: 600;">● Aberto agora</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="img/vet2.jpeg" alt="Exame">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Clínica Vet Care</h3>
-                    <span class="rating">⭐ 4.9</span>
-                </div>
-                <p>Clínica Geral e Vacinas</p>
-                <p class="price">Agendamento disponível</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="img/vet3.jpg" alt="Cão no veterinário">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Dra Tamy</h3>
-                    <span class="rating">⭐ 4.8</span>
-                </div>
-                <p>Ortopedia e Cardiologia</p>
-                <p class="price">A 3,5 km de você</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=500" alt="Exame Laboratorial">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Laboratório LifePet</h3>
-                    <span class="rating">⭐ 4.7</span>
-                </div>
-                <p>Exames de Imagem e Sangue</p>
-                <p class="price">Resultados em até 24h</p>
-            </div>
-        </div>
-
+    <section id="grid-estabelecimentos" class="grid">
+        <p style="text-align:center;padding:40px;color:var(--gray)">Carregando...</p>
     </section>
 
 </main>
@@ -151,29 +92,9 @@
     <p>© 2026 Clube dos Pets - Saúde e Bem-estar Animal</p>
 </footer>
 
-<script>
-    function gerenciarNav() {
-        const btnEntrar = document.getElementById('btn-entrar');
-        const btnSair = document.getElementById('btn-sair');
-        const logado = localStorage.getItem('usuarioLogado') === 'true';
-
-        if (logado) {
-            btnEntrar.classList.add('hidden');
-            btnSair.classList.remove('hidden');
-        } else {
-            btnEntrar.classList.remove('hidden');
-            btnSair.classList.add('hidden');
-        }
-    }
-
-    function logout() {
-        localStorage.removeItem('usuarioLogado');
-        alert("Você saiu da sua conta.");
-        window.location.reload();
-    }
-
-    window.onload = gerenciarNav;
-</script>
+<script src="auth.js"></script>
+<script>const CATEGORIA_ID = 1;</script>
+<script src="categoria-page.js"></script>
 
 </body>
 </html>

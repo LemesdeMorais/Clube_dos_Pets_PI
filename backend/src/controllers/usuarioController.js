@@ -156,9 +156,51 @@ const loginUsuario = async (req, res) => {
   }
 };
 
+const atualizarUsuario = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { nome } = req.body || {};
+
+    if (req.usuario.id_usuario !== Number(id)) {
+      return res.status(403).json({ mensagem: 'Acesso negado.' });
+    }
+
+    const nomeLimpo = typeof nome === 'string' ? nome.trim() : '';
+
+    if (!nomeLimpo) {
+      return res.status(400).json({ mensagem: 'Nome é obrigatório.' });
+    }
+
+    const [usuarios] = await db.query(
+      'SELECT id_usuario FROM usuario WHERE id_usuario = ? LIMIT 1',
+      [id]
+    );
+
+    if (!usuarios.length) {
+      return res.status(404).json({ mensagem: 'Usuário não encontrado.' });
+    }
+
+    await db.query('UPDATE usuario SET nome = ? WHERE id_usuario = ?', [nomeLimpo, id]);
+
+    const [atualizados] = await db.query(
+      'SELECT id_usuario, cpf, nome, email, data_cadastro FROM usuario WHERE id_usuario = ? LIMIT 1',
+      [id]
+    );
+
+    res.status(200).json({
+      mensagem: 'Usuário atualizado com sucesso.',
+      usuario: atualizados[0]
+    });
+  } catch (erro) {
+    console.error('Erro ao atualizar usuário:', erro);
+    res.status(500).json({ mensagem: 'Erro ao atualizar usuário.' });
+  }
+};
+
 module.exports = {
   listarUsuarios,
   buscarUsuarioPorId,
   cadastrarUsuario,
-  loginUsuario
+  loginUsuario,
+  atualizarUsuario
 };

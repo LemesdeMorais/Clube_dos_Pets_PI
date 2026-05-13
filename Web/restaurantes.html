@@ -71,6 +71,7 @@
         <a href="restaurantes.html" class="cat-item active" style="text-decoration: none;">🍽️<br>Restaurantes</a>
         <a href="shoppings.html" class="cat-item" style="text-decoration: none;">🛍️<br>Shoppings</a>
         <a href="parques.html" class="cat-item" style="text-decoration: none;">🌳<br>Parques</a>
+        <a href="mapa.html" class="cat-item" style="text-decoration: none;">📍<br>Mapa</a>
     </section>
 
     <div style="padding: 20px 0;">
@@ -78,68 +79,8 @@
         <p style="color: var(--gray); font-size: 14px;">Lugares onde o "bom pra cachorro" é levado a sério.</p>
     </div>
 
-    <section class="grid">
-
-        <div class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1550507992-eb63ffee0847?auto=format&fit=crop&w=500" alt="Hamburgueria">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Burger & Patas</h3>
-                    <span class="rating">⭐ 4.9</span>
-                </div>
-                <p>Hamburgueria Artesanal • Área externa</p>
-                <p class="price"><b>Menu Pet</b> disponível</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=500" alt="Cafeteria">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Café do Totó</h3>
-                    <span class="rating">⭐ 4.8</span>
-                </div>
-                <p>Cafeteria e Doceria • Araras, SP</p>
-                <p class="price">Ambiente climatizado e acolhedor</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=500" alt="Bar">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Espetinho do Dog</h3>
-                    <span class="rating">⭐ 4.5</span>
-                </div>
-                <p>Bar e Petiscos • Música ao vivo</p>
-                <p class="price">Área aberta e ventilada</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="img-box">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500" alt="Restaurante Italiano">
-                <span class="fav">♡</span>
-            </div>
-            <div class="card-info">
-                <div class="card-header">
-                    <h3>Cantina Di Napoli</h3>
-                    <span class="rating">⭐ 4.7</span>
-                </div>
-                <p>Cozinha Italiana Tradicional</p>
-                <p class="price">Varanda exclusiva para pets</p>
-            </div>
-        </div>
-
+    <section id="grid-estabelecimentos" class="grid">
+        <p style="text-align:center;padding:40px;color:var(--gray)">Carregando...</p>
     </section>
 
 </main>
@@ -152,29 +93,9 @@
     <p>© 2026 Clube dos Pets - Momentos deliciosos com seu pet</p>
 </footer>
 
-<script>
-    function gerenciarNav() {
-        const btnEntrar = document.getElementById('btn-entrar');
-        const btnSair = document.getElementById('btn-sair');
-        const logado = localStorage.getItem('usuarioLogado') === 'true';
-
-        if (logado) {
-            btnEntrar.classList.add('hidden');
-            btnSair.classList.remove('hidden');
-        } else {
-            btnEntrar.classList.remove('hidden');
-            btnSair.classList.add('hidden');
-        }
-    }
-
-    function logout() {
-        localStorage.removeItem('usuarioLogado');
-        alert("Você saiu da sua conta.");
-        window.location.reload();
-    }
-
-    window.onload = gerenciarNav;
-</script>
+<script src="auth.js"></script>
+<script>const CATEGORIA_ID = 3;</script>
+<script src="categoria-page.js"></script>
 
 </body>
 </html>

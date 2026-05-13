@@ -134,8 +134,31 @@ const cadastrarFavorito = async (req, res) => {
   }
 };
 
+const removerFavorito = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const [favoritos] = await db.query(
+      'SELECT id_favorito FROM favorito WHERE id_favorito = ? LIMIT 1',
+      [id]
+    );
+
+    if (!favoritos.length) {
+      return res.status(404).json({ mensagem: 'Favorito não encontrado.' });
+    }
+
+    await db.query('DELETE FROM favorito WHERE id_favorito = ?', [id]);
+
+    res.status(200).json({ mensagem: 'Favorito removido com sucesso.' });
+  } catch (erro) {
+    console.error('Erro ao remover favorito:', erro);
+    res.status(500).json({ mensagem: 'Erro ao remover favorito.' });
+  }
+};
+
 module.exports = {
   listarFavoritos,
   listarFavoritosPorUsuario,
-  cadastrarFavorito
+  cadastrarFavorito,
+  removerFavorito
 };
