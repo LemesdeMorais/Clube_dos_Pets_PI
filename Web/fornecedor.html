@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,6 +63,15 @@
         .feature-list li { margin-bottom: 12px; font-size: 14px; color: var(--black); display: flex; align-items: center; gap: 10px; }
         .feature-list li.disabled { color: var(--gray); opacity: 0.6; }
         
+        /* Garantindo o comportamento visual correto dos links de ação */
+        .btn-plano {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
         .commission-box {
             background: #f9f9f9;
             border-radius: 20px;
@@ -121,7 +131,7 @@
                     <li class="disabled">❌ Sem destaque visual</li>
                     <li class="disabled">❌ Aparece após planos pagos</li>
                 </ul>
-                <button class="btn" style="width: 100%; background: var(--gray);">Começar grátis</button>
+                <a href="cadastro.html?plano=essencial" class="btn btn-plano" style="background: var(--gray);">Começar grátis</a>
             </div>
 
             <div class="price-card featured">
@@ -135,7 +145,7 @@
                     <li>✅ Prioridade nas buscas</li>
                     <li>✅ Suporte prioritário</li>
                 </ul>
-                <button class="btn" style="width: 100%;">Assinar Agora</button>
+                <a href="cadastro.html?plano=destaque" class="btn btn-plano">Assinar Agora</a>
             </div>
 
             <div class="price-card">
@@ -148,7 +158,7 @@
                     <li>✅ Banner promocional na home</li>
                     <li>✅ Selo de parceiro verificado</li>
                 </ul>
-                <button class="btn" style="width: 100%;">Seja Premium</button>
+                <a href="cadastro.html?plano=premium" class="btn btn-plano">Seja Premium</a>
             </div>
         </div>
 
